@@ -1,9 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App.jsx';
-import OpenAi from './component/OpenAi';
+import VoiceAssistant from './component/VoiceAssistant';
 ReactDOM.createRoot(document.getElementById('root')).render(
-	<React.StrictMode>
-		<OpenAi />
-	</React.StrictMode>,
+	// <React.StrictMode>
+		<VoiceAssistant />
+	// </React.StrictMode>,
 );
