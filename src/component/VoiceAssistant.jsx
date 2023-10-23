@@ -9,11 +9,11 @@ const VoiceAssistant = () => {
 	const { listening, transcript } = useSpeechRecognition();
 	const [thinking, setThinking] = useState(false);
 	const [aiText, setAiText] = useState('');
-	// useEffect(() => {
-	// 	speak('Initializing NEXUS..');
-	// 	wishMe();
-	// 	console.log("h")
-	// }, []);
+	const [start, setStart] = useState(false);
+	useEffect(() => {
+		speak('Initializing NEXUS..');
+		wishMe();
+	}, [start]);
 	useEffect(() => {
 		if (!listening && transcript) {
 			callGptAPI(transcript).then((res) => {
@@ -30,11 +30,11 @@ const VoiceAssistant = () => {
 		const hour = day.getHours();
 
 		if (hour >= 0 && hour < 12) {
-			speak('Good Morning Boss...');
+			speak('Good Morning');
 		} else if (hour > 12 && hour < 17) {
-			speak('Good Afternoon Master...');
+			speak('Good Afternoon');
 		} else {
-			speak('Good Evening Sir...');
+			speak('Good Evening');
 		}
 	};
 	const speak = (res) => {
@@ -99,34 +99,16 @@ const VoiceAssistant = () => {
 			window.open('https://www.typingclub.com/sportal/', '_blank');
 			setThinking(false);
 			speak('Opening ed club...');
-		} else if (
-			message.includes('what is') ||
-			message.includes('who is') ||
-			message.includes('what are')
-		) {
-			window.open(
-				`https://www.google.com/search?q=${message.replace(' ', '+')}`,
-				'_blank',
-			);
-			const finalText =
-				'This is what I found on the internet regarding ' + message;
-			speak(finalText);
-			setThinking(false);
-		} else if (message.includes('wikipedia')) {
-			window.open(
-				`https://en.wikipedia.org/wiki/${message.replace('wikipedia', '')}`,
-				'_blank',
-			);
-			const finalText =
-				'This is what I found on Wikipedia regarding ' + message;
-			speak(finalText);
-			setThinking(false);
 		} else if (message.includes('time')) {
 			time = new Date().toLocaleString(undefined, {
 				hour: 'numeric',
 				minute: 'numeric',
 			});
 			const finalText = time;
+			speak(finalText);
+			setThinking(false);
+		} else if (message.includes('shahidi')) {
+			const finalText = "MOBIN SHAHIDI is a 20-year-old front-end developer and his";
 			speak(finalText);
 			setThinking(false);
 		} else if (message.includes('date')) {
@@ -170,7 +152,8 @@ const VoiceAssistant = () => {
 					spy={true}
 					smooth={true}
 					offset={100}
-					duration={1000}
+					duration={1500}
+					onClick={() => setStart(true)}
 				>
 					Start
 				</Link>
