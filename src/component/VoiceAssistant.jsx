@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import 'regenerator-runtime/runtime';
 import speech, { useSpeechRecognition } from 'react-speech-recognition';
 import { apiKey } from './config';
+import styles from './VoiceAssistant.module.css';
+import { Element, Link } from 'react-scroll';
 
 const VoiceAssistant = () => {
 	const { listening, transcript } = useSpeechRecognition();
@@ -160,18 +162,32 @@ const VoiceAssistant = () => {
 		}
 	};
 	return (
-		<div>
-			{listening ? (
-				<p>Go ahead i'm listening</p>
-			) : (
-				<p>Click the button and ask me anything</p>
-			)}
-			<button onClick={() => speech.startListening()}>
-				{listening ? 'Stop Listening' : 'Start Listening'}
-			</button>
-			{transcript && <div>{transcript}</div>}
-			{thinking && <div>Thinking...</div>}
-			{aiText && <div>{aiText}</div>}
+		<div className={styles.container}>
+			<div className={styles.firstPage}>
+				<Link
+					activeClass="active"
+					to="second"
+					spy={true}
+					smooth={true}
+					offset={100}
+					duration={1000}
+				>
+					Start
+				</Link>
+			</div>
+			<Element name="second" className={styles.secondPage}>
+				{listening ? (
+					<p>Go ahead i'm listening</p>
+				) : (
+					<p>Click the button and ask me anything</p>
+				)}
+				<button onClick={() => speech.startListening()}>
+					{listening ? 'Stop Listening' : 'Start Listening'}
+				</button>
+				{transcript && <div>{transcript}</div>}
+				{thinking && <div>Thinking...</div>}
+				{aiText && <div>{aiText}</div>}
+			</Element>
 		</div>
 	);
 };
