@@ -1,0 +1,38 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+
+.firstPage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: #3d3b3b;
+
+}
+
+.firstPage a {
+    padding: 50px;
+    border: solid 3px white;
+    background-color: white;
+    border-radius: 100%;
+    text-decoration: none;
+    color: #3d3b3b;
+    font-weight: bold;
+    cursor: pointer;
+    transition: .25s all ease-in-out;
+}
+
+.secondPage {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    /* background-color: #3d3b3b; */
+}
