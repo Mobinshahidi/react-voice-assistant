@@ -11,10 +11,6 @@ const VoiceAssistant = () => {
 	const [aiText, setAiText] = useState('');
 	const [start, setStart] = useState(false);
 	useEffect(() => {
-		speak('Initializing NEXUS..');
-		wishMe();
-	}, [start]);
-	useEffect(() => {
 		if (!listening && transcript) {
 			callGptAPI(transcript).then((res) => {
 				if (takeCommand(transcript.toLowerCase()) === 0) {
@@ -25,6 +21,10 @@ const VoiceAssistant = () => {
 		}
 	}, [transcript, listening]);
 
+	useEffect(() => {
+		speak('Initializing NEXUS..');
+		wishMe();
+	}, [start]);
 	const wishMe = () => {
 		const day = new Date();
 		const hour = day.getHours();
@@ -108,7 +108,8 @@ const VoiceAssistant = () => {
 			speak(finalText);
 			setThinking(false);
 		} else if (message.includes('shahidi')) {
-			const finalText = "MOBIN SHAHIDI is a 20-year-old front-end developer and his";
+			const finalText =
+				'MOBIN SHAHIDI is a 20-year-old front-end developer and his';
 			speak(finalText);
 			setThinking(false);
 		} else if (message.includes('date')) {
@@ -164,7 +165,11 @@ const VoiceAssistant = () => {
 				) : (
 					<p>Click the button and ask me anything</p>
 				)}
-				<button onClick={() => speech.startListening()}>
+				<button
+					onClick={() =>
+						!listening ? speech.startListening() : speech.stopListening()
+					}
+				>
 					{listening ? 'Stop Listening' : 'Start Listening'}
 				</button>
 				{transcript && <div>{transcript}</div>}
