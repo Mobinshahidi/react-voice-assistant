@@ -12,8 +12,10 @@
   "dependencies": {
     "@types/dom-speech-recognition": "^0.0.3",
     "annyang": "^2.6.1",
+    "icons": "^1.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-icons": "^4.11.0",
     "react-scroll": "^1.9.0",
     "react-speech-recognition": "^3.10.0",
     "regenerator-runtime": "^0.14.0"
