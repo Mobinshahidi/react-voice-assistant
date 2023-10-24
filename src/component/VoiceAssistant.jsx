@@ -6,7 +6,8 @@ import styles from './VoiceAssistant.module.css';
 import { Element, Link } from 'react-scroll';
 import { LiaMicrophoneSlashSolid } from 'react-icons/lia';
 import { LiaMicrophoneSolid } from 'react-icons/lia';
-
+// import ParticlesBg from 'particles-bg'
+// import ParticleBackground from './ParticleBackground';
 const VoiceAssistant = () => {
 	const { listening, transcript } = useSpeechRecognition();
 	const [thinking, setThinking] = useState(false);
@@ -147,7 +148,8 @@ const VoiceAssistant = () => {
 		}
 	};
 	return (
-		<div className={styles.container}>
+		<div className={styles.container} id='bg'>
+			{/* <ParticlesBg  num={200}type="cobweb" bg={true}/> */}
 			<div className={styles.firstPage}>
 				<Link
 					activeClass="active"
@@ -162,6 +164,8 @@ const VoiceAssistant = () => {
 				</Link>
 			</div>
 			<Element name="second" className={styles.secondPage}>
+			{/* <ParticlesBg  num={200}type="cobweb" bg={true}/> */}
+			{/* <ParticleBackground /> */}
 				<span className={styles.title}>
 					{listening ? (
 						<p>Go ahead i'm listening</p>
