@@ -4,6 +4,8 @@ import speech, { useSpeechRecognition } from 'react-speech-recognition';
 import { apiKey } from './config';
 import styles from './VoiceAssistant.module.css';
 import { Element, Link } from 'react-scroll';
+import { LiaMicrophoneSlashSolid } from 'react-icons/lia';
+import { LiaMicrophoneSolid } from 'react-icons/lia';
 
 const VoiceAssistant = () => {
 	const { listening, transcript } = useSpeechRecognition();
@@ -160,21 +162,26 @@ const VoiceAssistant = () => {
 				</Link>
 			</div>
 			<Element name="second" className={styles.secondPage}>
-				{listening ? (
-					<p>Go ahead i'm listening</p>
-				) : (
-					<p>Click the button and ask me anything</p>
-				)}
+				<span className={styles.title}>
+					{listening ? (
+						<p>Go ahead i'm listening</p>
+					) : (
+						<p>Click the button and ask me anything</p>
+					)}
+				</span>
 				<button
+					className={styles.mic}
 					onClick={() =>
 						!listening ? speech.startListening() : speech.stopListening()
 					}
 				>
-					{listening ? 'Stop Listening' : 'Start Listening'}
+					{listening ? <LiaMicrophoneSlashSolid /> : <LiaMicrophoneSolid />}
 				</button>
-				{transcript && <div>{transcript}</div>}
-				{thinking && <div>Thinking...</div>}
-				{aiText && <div>{aiText}</div>}
+				<div className={styles.texts}>
+					{transcript && <div>{transcript}</div>}
+					{thinking && <div>Thinking...</div>}
+					{aiText && <div>{aiText}</div>}
+				</div>
 			</Element>
 		</div>
 	);
