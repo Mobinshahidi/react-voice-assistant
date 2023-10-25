@@ -6,7 +6,7 @@ import styles from './VoiceAssistant.module.css';
 import { Element, Link } from 'react-scroll';
 import { LiaMicrophoneSlashSolid } from 'react-icons/lia';
 import { LiaMicrophoneSolid } from 'react-icons/lia';
-// import ParticlesBg from 'particles-bg'
+import ParticlesBg from 'particles-bg'
 // import ParticleBackground from './ParticleBackground';
 const VoiceAssistant = () => {
 	const { listening, transcript } = useSpeechRecognition();
@@ -112,7 +112,8 @@ const VoiceAssistant = () => {
 			setThinking(false);
 		} else if (message.includes('shahidi')) {
 			const finalText =
-				'MOBIN SHAHIDI is a 20-year-old front-end developer and his';
+				'MOBIN SHAHIDI is a 20-year-old front-end developer and his portfolio is';
+				window.open("https://mobinshahidi.netlify.app")
 			speak(finalText);
 			setThinking(false);
 		} else if (message.includes('date')) {
