@@ -6,7 +6,7 @@ import styles from './VoiceAssistant.module.css';
 import { Element, Link } from 'react-scroll';
 import { LiaMicrophoneSlashSolid } from 'react-icons/lia';
 import { LiaMicrophoneSolid } from 'react-icons/lia';
-import ParticlesBg from 'particles-bg'
+import ParticlesBg from 'particles-bg';
 // import ParticleBackground from './ParticleBackground';
 const VoiceAssistant = () => {
 	const { listening, transcript } = useSpeechRecognition();
@@ -113,7 +113,7 @@ const VoiceAssistant = () => {
 		} else if (message.includes('shahidi')) {
 			const finalText =
 				'MOBIN SHAHIDI is a 20-year-old front-end developer and his portfolio is';
-				window.open("https://mobinshahidi.netlify.app")
+			window.open('https://mobinshahidi.netlify.app');
 			speak(finalText);
 			setThinking(false);
 		} else if (message.includes('date')) {
@@ -149,45 +149,37 @@ const VoiceAssistant = () => {
 		}
 	};
 	return (
-		<div className={styles.container} id='bg'>
-			{/* <ParticlesBg  num={200}type="cobweb" bg={true}/> */}
-			<div className={styles.firstPage}>
-				<Link
-					activeClass="active"
-					to="second"
-					spy={true}
-					smooth={true}
-					offset={100}
-					duration={1500}
-					onClick={() => setStart(true)}
-				>
-					Start
-				</Link>
-			</div>
-			<Element name="second" className={styles.secondPage}>
-			{/* <ParticlesBg  num={200}type="cobweb" bg={true}/> */}
-			{/* <ParticleBackground /> */}
-				<span className={styles.title}>
-					{listening ? (
-						<p>Go ahead i'm listening</p>
-					) : (
-						<p>Click the button and ask me anything</p>
-					)}
-				</span>
-				<button
-					className={styles.mic}
-					onClick={() =>
-						!listening ? speech.startListening() : speech.stopListening()
-					}
-				>
-					{listening ? <LiaMicrophoneSlashSolid /> : <LiaMicrophoneSolid />}
-				</button>
-				<div className={styles.texts}>
-					{transcript && <div>{transcript}</div>}
-					{thinking && <div>Thinking...</div>}
-					{aiText && <div>{aiText}</div>}
+		<div className={styles.container} id="bg">
+			<ParticlesBg color='#2c0f85' num={200} type="cobweb" bg={true} />
+			{!start && (
+				<div className={styles.firstPage}>
+					<button onClick={() => setStart(!start)}>Start Explore</button>
 				</div>
-			</Element>
+			)}
+			{start && (
+				<div className={styles.hidden}>
+					<span className={styles.title}>
+						{listening ? (
+							<p>Go ahead i'm listening</p>
+						) : (
+							<p>Click the button and ask me anything</p>
+						)}
+					</span>
+					<button
+						className={styles.mic}
+						onClick={() =>
+							!listening ? speech.startListening() : speech.stopListening()
+						}
+					>
+						{listening ? <LiaMicrophoneSlashSolid /> : <LiaMicrophoneSolid />}
+					</button>
+					<div className={styles.texts}>
+						{transcript && <div>{transcript}</div>}
+						{thinking && <div>Thinking...</div>}
+						{aiText && <div>{aiText}</div>}
+					</div>
+				</div>
+			)}
 		</div>
 	);
 };
