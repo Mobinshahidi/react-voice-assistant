@@ -147,10 +147,17 @@ const VoiceAssistant = () => {
 			return 0;
 		}
 	};
+
+	const micHandler = () => {
+		
+		!listening ? speech.startListening() : speech.stopListening();
+		console.log('hi');
+	};
 	return (
 		<div className={styles.container} id="bg">
 			<ParticlesBg color="" num={200} type="cobweb" bg={true} />
 			<div className={styles.container_items}>
+			<h1 className={styles.title}>Nexus</h1>
 				{!start && (
 					<div className={styles.bio}>
 						<Typewriter
@@ -174,21 +181,16 @@ const VoiceAssistant = () => {
 				)}
 				{start && (
 					<div>
-						<span className={styles.title}>
+						<span className={styles.title_listening}>
 							{listening ? (
 								<p>Go ahead i'm listening</p>
 							) : (
 								<p>Click the button and ask me anything</p>
 							)}
 						</span>
-						<button
-							className={styles.mic}
-							onClick={() =>
-								!listening ? speech.startListening() : speech.stopListening()
-							}
-						>
+						<div className={styles.mic} onClick={micHandler}>
 							{listening ? <LiaMicrophoneSlashSolid /> : <LiaMicrophoneSolid />}
-						</button>
+						</div>
 						<div className={styles.texts}>
 							{transcript && <div>{transcript}</div>}
 							{thinking && <div>Thinking...</div>}
