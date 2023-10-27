@@ -3,11 +3,10 @@ import 'regenerator-runtime/runtime';
 import speech, { useSpeechRecognition } from 'react-speech-recognition';
 import { apiKey } from './config';
 import styles from './VoiceAssistant.module.css';
-import { Element, Link } from 'react-scroll';
+import Typewriter from 'typewriter-effect';
 import { LiaMicrophoneSlashSolid } from 'react-icons/lia';
 import { LiaMicrophoneSolid } from 'react-icons/lia';
 import ParticlesBg from 'particles-bg';
-// import ParticleBackground from './ParticleBackground';
 const VoiceAssistant = () => {
 	const { listening, transcript } = useSpeechRecognition();
 	const [thinking, setThinking] = useState(false);
@@ -25,8 +24,8 @@ const VoiceAssistant = () => {
 	}, [transcript, listening]);
 
 	useEffect(() => {
-		speak('Initializing NEXUS..');
-		wishMe();
+		// speak('Initializing NEXUS..');
+		// wishMe();
 	}, [start]);
 	const wishMe = () => {
 		const day = new Date();
@@ -150,36 +149,54 @@ const VoiceAssistant = () => {
 	};
 	return (
 		<div className={styles.container} id="bg">
-			<ParticlesBg color='#2c0f85' num={200} type="cobweb" bg={true} />
-			{!start && (
-				<div className={styles.firstPage}>
-					<button onClick={() => setStart(!start)}>Start Explore</button>
-				</div>
-			)}
-			{start && (
-				<div className={styles.hidden}>
-					<span className={styles.title}>
-						{listening ? (
-							<p>Go ahead i'm listening</p>
-						) : (
-							<p>Click the button and ask me anything</p>
-						)}
-					</span>
-					<button
-						className={styles.mic}
-						onClick={() =>
-							!listening ? speech.startListening() : speech.stopListening()
-						}
-					>
-						{listening ? <LiaMicrophoneSlashSolid /> : <LiaMicrophoneSolid />}
-					</button>
-					<div className={styles.texts}>
-						{transcript && <div>{transcript}</div>}
-						{thinking && <div>Thinking...</div>}
-						{aiText && <div>{aiText}</div>}
+			<ParticlesBg color="" num={200} type="cobweb" bg={true} />
+			<div className={styles.container_items}>
+				{!start && (
+					<div className={styles.bio}>
+						<Typewriter
+							component="p"
+							options={{
+								delay: 50,
+							}}
+							onInit={(typewriter) => {
+								typewriter
+									.typeString(
+										"Unlock the power of voice commands with our innovative voice assistant powered by the ChatGPT API. Nexus seamlessly blends cutting-edge AI technology with your natural voice. Simply speak your commands, and watch as the digital world springs to life. Whether it's opening your favorite music app like Spotify, or answering your burning questions. With the ChatGPT API at its core, our assistant offers unparalleled accuracy and intelligence, ensuring that your commands are understood and executed swiftly and efficiently. Were here to make your digital life smoother, more efficient, and more enjoyable.Welcome to the future of human-computer interaction. Welcome to Nexus.",
+									)
+									.start();
+							}}
+						/>
+
+						<div className={styles.start_btn} onClick={() => setStart(!start)}>
+							Start Explore
+						</div>
 					</div>
-				</div>
-			)}
+				)}
+				{start && (
+					<div>
+						<span className={styles.title}>
+							{listening ? (
+								<p>Go ahead i'm listening</p>
+							) : (
+								<p>Click the button and ask me anything</p>
+							)}
+						</span>
+						<button
+							className={styles.mic}
+							onClick={() =>
+								!listening ? speech.startListening() : speech.stopListening()
+							}
+						>
+							{listening ? <LiaMicrophoneSlashSolid /> : <LiaMicrophoneSolid />}
+						</button>
+						<div className={styles.texts}>
+							{transcript && <div>{transcript}</div>}
+							{thinking && <div>Thinking...</div>}
+							{aiText && <div>{aiText}</div>}
+						</div>
+					</div>
+				)}
+			</div>
 		</div>
 	);
 };
