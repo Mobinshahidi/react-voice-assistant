@@ -15,9 +15,11 @@ body {
     width: 100vw;
     height: 100vh;
 }
-.title{
+
+.title {
     font-family: 'Black Ops One', sans-serif;
 }
+
 .container_items {
     display: flex;
     flex-direction: column;
@@ -45,7 +47,7 @@ body {
     border-radius: 5px;
     background-color: rgba(30, 26, 26, 0.99);
     color: white;
-    bottom: 30%;
+    bottom: 15%;
     left: 40%;
     align-self: center;
     transition: all .3s ease-in-out;
@@ -56,9 +58,26 @@ body {
     box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 }
 
-.bio {
-    transition: .25s all ease-in-out;
+.mic {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: .2s all ease-in-out;
 }
 
+.mic:hover {
+    color: rgb(49, 49, 49);
+    rotate: 10deg;
+}
+
+.title_listening, .transcript, .thinking {
+    text-align: center;
+}
+
+.aiText {
+    text-align: justify;
+    max-height: 380px;
+    overflow-y: auto;
+}
 
 @media screen and (max-width:767px) {}

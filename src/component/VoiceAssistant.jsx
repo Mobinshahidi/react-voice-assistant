@@ -24,9 +24,9 @@ const VoiceAssistant = () => {
 	}, [transcript, listening]);
 
 	useEffect(() => {
-		// speak('Initializing NEXUS..');
-		// wishMe();
-	}, [start]);
+		speak('Initializing NEXUS..');
+		wishMe();
+	}, [start == true]);
 	const wishMe = () => {
 		const day = new Date();
 		const hour = day.getHours();
@@ -149,15 +149,13 @@ const VoiceAssistant = () => {
 	};
 
 	const micHandler = () => {
-		
 		!listening ? speech.startListening() : speech.stopListening();
-		console.log('hi');
 	};
 	return (
 		<div className={styles.container} id="bg">
-			<ParticlesBg color="" num={200} type="cobweb" bg={true} />
+			<ParticlesBg num={200} type="cobweb" bg={true} />
 			<div className={styles.container_items}>
-			<h1 className={styles.title}>Nexus</h1>
+				<h1 className={styles.title}>Nexus</h1>
 				{!start && (
 					<div className={styles.bio}>
 						<Typewriter
@@ -191,11 +189,15 @@ const VoiceAssistant = () => {
 						<div className={styles.mic} onClick={micHandler}>
 							{listening ? <LiaMicrophoneSlashSolid /> : <LiaMicrophoneSolid />}
 						</div>
-						<div className={styles.texts}>
+						<span className={styles.transcript}>
 							{transcript && <div>{transcript}</div>}
-							{thinking && <div>Thinking...</div>}
+						</span>
+						<span className={styles.thinking}>
+							{thinking && !aiText && <div>Thinking...</div>}
+						</span>
+						<span className={styles.aiText}>
 							{aiText && <div>{aiText}</div>}
-						</div>
+						</span>
 					</div>
 				)}
 			</div>
