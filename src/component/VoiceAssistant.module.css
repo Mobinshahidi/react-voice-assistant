@@ -75,10 +75,38 @@ body {
 }
 
 .aiText {
-    margin:25px;
+    margin: 25px;
     text-align: justify;
     max-height: 350px;
     overflow-y: auto;
 }
 
-@media screen and (max-width:767px) {}
+@media screen and (max-width:767px) {
+
+    .container_items {
+
+        min-height: 700px;
+        max-height: 700px;
+        min-width: 250px;
+        max-width: 250px;
+    }
+
+    .bio {
+        min-height: 400px;
+        max-height: 400px;
+        overflow-y: auto;
+    }
+
+    .start_btn {
+        position: absolute;
+        padding: 20px 15px;
+        bottom: 10%;
+        left: 28%;
+        align-self: center;
+        transition: all .3s ease-in-out;
+    }
+    .aiText{
+        max-width:250px;
+        max-height: 400px;
+    }
+}
