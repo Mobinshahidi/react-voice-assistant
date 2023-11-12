@@ -75,8 +75,9 @@ body {
 }
 
 .aiText {
+    margin:25px;
     text-align: justify;
-    max-height: 380px;
+    max-height: 350px;
     overflow-y: auto;
 }
 

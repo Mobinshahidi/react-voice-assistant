@@ -179,25 +179,25 @@ const VoiceAssistant = () => {
 				)}
 				{start && (
 					<div>
-						<span className={styles.title_listening}>
+						<div className={styles.title_listening}>
 							{listening ? (
 								<p>Go ahead i'm listening</p>
 							) : (
 								<p>Click the button and ask me anything</p>
 							)}
-						</span>
+						</div>
 						<div className={styles.mic} onClick={micHandler}>
 							{listening ? <LiaMicrophoneSlashSolid /> : <LiaMicrophoneSolid />}
 						</div>
-						<span className={styles.transcript}>
+						<div className={styles.transcript}>
 							{transcript && <div>{transcript}</div>}
-						</span>
-						<span className={styles.thinking}>
+						</div>
+						<div className={styles.thinking}>
 							{thinking && !aiText && <div>Thinking...</div>}
-						</span>
-						<span className={styles.aiText}>
+						</div>
+						<div className={styles.aiText}>
 							{aiText && <div>{aiText}</div>}
-						</span>
+						</div>
 					</div>
 				)}
 			</div>
