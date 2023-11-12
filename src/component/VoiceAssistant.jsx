@@ -33,8 +33,8 @@ const VoiceAssistant = () => {
 	}, [transcript, listening]);
 
 	useEffect(() => {
-		// speak('Initializing NEXUS..');
-		// wishMe();
+		speak('Initializing NEXUS..');
+		wishMe();
 	}, [start == true]);
 	const wishMe = () => {
 		const day = new Date();
