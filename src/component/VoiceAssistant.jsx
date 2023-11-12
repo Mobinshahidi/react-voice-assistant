@@ -7,11 +7,20 @@ import Typewriter from 'typewriter-effect';
 import { LiaMicrophoneSlashSolid } from 'react-icons/lia';
 import { LiaMicrophoneSolid } from 'react-icons/lia';
 import ParticlesBg from 'particles-bg';
+import { useBreakpointValue } from '../hooks/useBreakpoint';
+
+window.speechSynthesis.cancel();
+
 const VoiceAssistant = () => {
 	const { listening, transcript } = useSpeechRecognition();
 	const [thinking, setThinking] = useState(false);
 	const [aiText, setAiText] = useState('');
 	const [start, setStart] = useState(false);
+	const numberOfDots = useBreakpointValue({
+		fallback: 50,
+		md: 200,
+	});
+
 	useEffect(() => {
 		if (!listening && transcript) {
 			callGptAPI(transcript).then((res) => {
@@ -24,8 +33,8 @@ const VoiceAssistant = () => {
 	}, [transcript, listening]);
 
 	useEffect(() => {
-		speak('Initializing NEXUS..');
-		wishMe();
+		// speak('Initializing NEXUS..');
+		// wishMe();
 	}, [start == true]);
 	const wishMe = () => {
 		const day = new Date();
@@ -153,7 +162,7 @@ const VoiceAssistant = () => {
 	};
 	return (
 		<div className={styles.container} id="bg">
-			<ParticlesBg num={200} type="cobweb" bg={true} />
+			<ParticlesBg num={numberOfDots} type="cobweb" bg={true} />
 			<div className={styles.container_items}>
 				<h1 className={styles.title}>Nexus</h1>
 				{!start && (
@@ -195,9 +204,7 @@ const VoiceAssistant = () => {
 						<div className={styles.thinking}>
 							{thinking && !aiText && <div>Thinking...</div>}
 						</div>
-						<div className={styles.aiText}>
-							{aiText && <div>{aiText}</div>}
-						</div>
+						<div className={styles.aiText}>{aiText && <div>{aiText}</div>}</div>
 					</div>
 				)}
 			</div>
