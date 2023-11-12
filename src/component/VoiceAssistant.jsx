@@ -51,7 +51,7 @@ const VoiceAssistant = () => {
 	const speak = (res) => {
 		const speechSynthesis = window.speechSynthesis;
 		const utterance = new SpeechSynthesisUtterance(res);
-		utterance.rate = 1.7;
+		utterance.rate = 1.5;
 		utterance.volume = 1;
 		utterance.pitch = 1;
 		speechSynthesis.speak(utterance);
