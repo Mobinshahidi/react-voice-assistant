@@ -1,8 +1,4 @@
-# React + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# React Voice Assostant
+This voice assistant powered by ChatGPT API. Easily control Spotify or get answers with natural voice commands. Experience fast and accurate responses for smoother digital interactions and working properly using react and JavaScript.
+# demo
+you can see the demo [here](https://msnexus.netlify.app/)!🎰
